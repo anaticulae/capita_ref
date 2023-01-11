@@ -1,0 +1,23 @@
+# =============================================================================
+# C O P Y R I G H T
+# -----------------------------------------------------------------------------
+# Copyright (c) 2020-2022 by Helmut Konrad Fahrendholz. All rights reserved.
+# This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
+# use or distribution is an offensive act against international law and may
+# be prosecuted under federal law. Its content is company confidential.
+# =============================================================================
+
+import sections.utils.spa
+
+import sections_ref.biblio.doublecolumn
+import sections_ref.biblio.specialchars
+
+
+def extract(data: sections.utils.spa.Data) -> list:
+    special = sections_ref.biblio.specialchars.extract(data)
+    double = sections_ref.biblio.doublecolumn.extract(data)
+    # select "better" result
+    special_sum = sum(item.content.value for item in special)
+    double_sum = sum(item.content.value for item in double)
+    result = special if special_sum > double_sum else double
+    return result
