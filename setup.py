@@ -13,6 +13,7 @@ import utila
 PACKAGES = [
     'sections_ref',
     'sections_ref.biblio',
+    'sections_ref.feature',
 ]
 ENTRY_POINTS = dict(console_scripts=[
     'sections_ref = sections_ref.cli:main',
