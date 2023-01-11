@@ -1,0 +1,27 @@
+# =============================================================================
+# C O P Y R I G H T
+# -----------------------------------------------------------------------------
+# Copyright (c) 2020-2023 by Helmut Konrad Fahrendholz. All rights reserved.
+# This file is property of Helmut Konrad Fahrendholz. Any unauthorized copy,
+# use or distribution is an offensive act against international law and may
+# be prosecuted under federal law. Its content is company confidential.
+# =============================================================================
+
+utilatest==0.26.1
+
+# reference to test data
+power==2.20.1
+
+# ensure that test data is generated with the right version of rawmaker
+rawmaker==2.40.2
+groupme==0.40.5
+
+detector==0.40.1
+
+pagenumber==0.3.5
+footnote==0.2.6
+headnote==0.5.2
+cleanup==0.9.1
+
+genex==0.37.1
+hardcore==0.8.1
