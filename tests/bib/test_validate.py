@@ -35,6 +35,16 @@ def test_validate_bibliography(source, td, mp):
 
 @pytest.mark.parametrize('source, expected', [
     pytest.param(power.BACHELOR029A_PDF, [28], id='bachelor029a'),
+    pytest.param(power.BACHELOR037_PDF, [33, 34, 35, 36], id='bachelor037'),
+    pytest.param(power.BACHELOR090_PDF, [84, 85, 86, 87, 88], id='bachelor090'),
+    pytest.param(power.BACHELOR128_PDF, utila.rlist(96, 103), id='bachelor128'),
+    pytest.param(power.BOOK173_PDF, [], id='book173', marks=pytest.mark.xfail),
+    pytest.param(power.DISS266_PDF, utila.rlist(214, 246), id='diss266'),
+    pytest.param(power.HOME018_PDF, [17], id='home018'),
+    pytest.param(power.MASTER110_PDF, utila.rlist(104, 109), id='master110'),
+    pytest.param(power.MASTER148_PDF, [109, 110, 111, 112], id='master148'),
+    pytest.param(power.MASTER193_PDF, [188, 189, 190], id='master193'),
+    pytest.param(power.PAPER018_PDF, [15, 16, 17], id='paper018'),
 ])
 def test_valdiate(source, expected, td, mp):
     pages = extract_bibliography(source, ':', td, mp)

@@ -20,6 +20,16 @@ power.setup(__file__)
 
 RESOURCES = [
     power.BACHELOR029A_PDF,
+    power.BACHELOR037_PDF,
+    power.BACHELOR090_PDF,
+    power.BACHELOR128_PDF,
+    power.BOOK173_PDF,
+    power.DISS266_PDF,
+    power.HOME018_PDF,
+    power.MASTER110_PDF,
+    power.MASTER148_PDF,
+    power.MASTER193_PDF,
+    power.PAPER018_PDF,
 ]
 WORKER = utilatest.worker_count(4, onci=len(RESOURCES))
 
