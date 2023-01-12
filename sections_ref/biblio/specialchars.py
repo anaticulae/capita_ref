@@ -171,8 +171,8 @@ def years(raw: str, min_=1950, max_=2025, verbose: bool = False):
 
 AUTHORS = utila.compiles(r"""
     (
-        [a-z]{4,}[ ]{1,4}[a-z]\.|
-        [a-z]\.[ ]{1,4}[a-z]{4,}
+        [a-z]{4,18}[ ]{1,4}[a-z]\.|
+        [a-z]\.[ ]{1,4}[a-z]{4,18}
         # [a-z]{4,18}\,[ ]{1,2}[a-z]{4,18}
     )
 """)
