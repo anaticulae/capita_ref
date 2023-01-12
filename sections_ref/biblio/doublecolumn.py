@@ -53,12 +53,12 @@ def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
 PRENOM = utila.compiles(r'[a-z]+\s(?P<prenom>\w\.)')
 
 
-def prenom(raw: str) -> list:
+def prenom(raw: str) -> tuple:
     """\
     >>> prenom('Becker J. & Franz S.')
-    ['J.', 'S.']
+    ('J.', 'S.')
     >>> prenom('1230 1.')
-    []
+    ()
     """
     result = [item[0] + '.' for item in PRENOM.findall(raw)]
-    return result
+    return tuple(result)
