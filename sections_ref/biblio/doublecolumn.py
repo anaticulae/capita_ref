@@ -9,14 +9,15 @@
 
 import re
 
+import configo
 import geostrat
 import sections.utils.spa
 import texmex
 
 import sections_ref.biblio.utils
 
-LIKELIHOOD_MIN = 0.5
-MARKER_COUNT_MIN = 50
+LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=30)
+MARKER_COUNT_MIN = configo.HV_INT_PLUS(default=50)
 
 
 def extract(data: sections.utils.spa.Data) -> list:
