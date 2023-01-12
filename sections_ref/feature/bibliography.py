@@ -13,18 +13,34 @@ import serializeraw
 import sections_ref.biblio.strategy
 
 
-def work(document: str, position: str, footer: str, pages: tuple = None) -> str:
+def work(
+    document: str,
+    position: str,
+    document_oneline: str,
+    position_oneline: str,
+    footer: str,
+    pages: tuple = None,
+) -> str:
     nobib = skip_bibliography(
         footer,
         pages=pages,
     )
-    data = sections.utils.spa.Data(
+    normal = sections.utils.spa.Data(
         document=document,
         position=position,
         pages=pages,
         skips=nobib,
     )
-    hugest = sections_ref.biblio.strategy.extract(data)
+    oneline = sections.utils.spa.Data(
+        document=document_oneline,
+        position=position_oneline,
+        pages=pages,
+        skips=nobib,
+    )
+    hugest = sections_ref.biblio.strategy.extract(
+        normal,
+        oneline,
+    )
     dumped = serializeraw.dump_likelihood(hugest)
     return dumped
 

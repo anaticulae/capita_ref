@@ -20,6 +20,8 @@ WORKPLAN = [
         inputs=[
             utila.ResultFile('rawmaker', 'text_text'),
             utila.ResultFile('rawmaker', 'text_positions'),
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
             utila.ResultFile('groupme', 'hefopa_result'),
         ],
         output=('like',),
