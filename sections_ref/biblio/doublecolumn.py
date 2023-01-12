@@ -7,12 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import re
-
 import configo
 import geostrat
 import sections.utils.spa
 import texmex
+import utila
 
 import sections_ref.biblio.utils
 
@@ -51,12 +50,15 @@ def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
     return len(ptn), marker
 
 
+PRENOM = utila.compiles(r'[a-z]+\s(?P<prenom>\w\.)')
+
+
 def prenom(raw: str) -> list:
     """\
     >>> prenom('Becker J. & Franz S.')
     ['J.', 'S.']
+    >>> prenom('1230 1.')
+    []
     """
-    result = [
-        item[0] + '.' for item in re.findall(r'\w+\s(?P<prenom>\w\.)', raw)
-    ]
+    result = [item[0] + '.' for item in PRENOM.findall(raw)]
     return result
