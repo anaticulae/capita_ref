@@ -25,6 +25,7 @@ import configo
 import elements.headline.lookup
 import german
 import german.pattern.author
+import sections.feature
 import sections.utils.headline
 import sections.utils.spa
 import texmex
