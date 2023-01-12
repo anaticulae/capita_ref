@@ -25,7 +25,7 @@ ARCHIVE = utila.join(sections_ref.ROOT, 'tests/bib/expected', exist=True)
     'source',
     utilatest.test_resources(tests.conftest.RESOURCES),
 )
-def test_validate_bibliography(source, td, mp):
+def test_bib(source, td, mp):
     BibliographyValidate(
         source=source,
         workdir=td.tmpdir,
@@ -46,7 +46,7 @@ def test_validate_bibliography(source, td, mp):
     pytest.param(power.MASTER193_PDF, [188, 189, 190], id='master193'),
     pytest.param(power.PAPER018_PDF, [15, 16, 17], id='paper018'),
 ])
-def test_valdiate(source, expected, td, mp):
+def test_validate(source, expected, td, mp):
     pages = extract_bibliography(source, ':', td, mp)
     assert pages == expected
 
