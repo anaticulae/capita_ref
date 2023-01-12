@@ -53,6 +53,7 @@ def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
 PRENOM = utila.compiles(r'[a-z]+\s(?P<prenom>\w\.)')
 
 
+@utila.cacheme
 def prenom(raw: str) -> tuple:
     """\
     >>> prenom('Becker J. & Franz S.')
