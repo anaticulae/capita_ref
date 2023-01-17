@@ -51,6 +51,26 @@ def test_validate(source, expected, td, mp):
     assert pages == expected
 
 
+def testfiles():
+    files = [(source, power.bib(source, default=None))
+             for source in tests.conftest.RESOURCES]
+    files = [item for item in files if item[1] is not None]
+    files = [
+        pytest.param(
+            path,
+            list(utila.parse_pages(page)),
+            id=utila.file_name(path),
+        ) for path, page in files
+    ]
+    return files
+
+
+@pytest.mark.parametrize('source, expected', testfiles())
+def test_files(source, expected, td, mp):
+    pages = extract_bibliography(source, ':', td, mp)
+    assert pages == expected
+
+
 def extract_bibliography(source, pages, td, mp):
     source = power.link(source)
     utilatest.fixture_requires(source)
