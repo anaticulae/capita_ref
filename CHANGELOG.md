@@ -2,6 +2,20 @@
 
 Every noteable change is logged here.
 
+## v0.2.1 (2023-01-24)
+
+### Documentation
+
+* happy New Year! (a9538bcacf27)
+
+### Chore
+
+* upgrade requirements.txt (4ced5c458847)
+* extend test data generator (0b972fdc9210)
+* upgrade requirements.txt (46936153bafd)
+* upgrade Jenkinsfile (721b2c2044c0)
+* upgrade pipe library (d9281766f5ee)
+
 ## v0.2.0 (2023-01-12)
 
 ### Feature
