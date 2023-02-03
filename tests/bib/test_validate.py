@@ -56,6 +56,7 @@ def test_validate(source, expected, td, mp):
 PUBLICATIONS = [
     power.BACHELOR029A_PDF,
     power.DISS173_PDF,
+    power.HC_DISS128,
 ]
 
 
