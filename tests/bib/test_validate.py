@@ -20,6 +20,8 @@ import tests
 
 ARCHIVE = utila.join(sections_ref.ROOT, 'tests/bib/expected', exist=True)
 
+PUBLICATION = utila.join(sections_ref.ROOT, 'tests/pub/expected', exist=True)
+
 
 @pytest.mark.parametrize(
     'source',
@@ -49,6 +51,20 @@ def test_bib(source, td, mp):
 def test_validate(source, expected, td, mp):
     pages = extract_bibliography(source, ':', td, mp)
     assert pages == expected
+
+
+@pytest.mark.parametrize(
+    'source',
+    utilatest.test_resources([
+        power.BACHELOR029A_PDF,
+    ]),
+)
+def test_pub(source, td, mp):
+    PublicationValidate(
+        source=source,
+        workdir=td.tmpdir,
+        mp=mp,
+    ).evaluate()
 
 
 def testfiles() -> list:
@@ -150,6 +166,38 @@ class BibliographyValidate(Evaluate):
     def raw(self, value) -> str:
         pages = []
         for line in value:
+            raw = f'{line.page}'.zfill(3) + ' ' + str(line.content.value)
+            pages.append(raw)
+        result = utila.NEWLINE.join(pages)
+        return result
+
+
+class PublicationValidate(Evaluate):
+
+    def __init__(self, source, workdir, mp):
+        super().__init__(
+            step='publication',
+            pages=':',
+            source=source,
+            mp=mp,
+            workdir=workdir,
+            archive=PUBLICATION,
+        )
+
+    def load_sections(self, _):  # pylint:disable=W0613
+        path = utila.join(
+            self.workdir,
+            'sections_ref__publication_like.yaml',
+        )
+        loaded = serializeraw.load_likelihood(path)
+        return loaded
+
+    def raw(self, value) -> str:
+        pages = []
+        for line in value:
+            if not line.content.value:
+                # do not write zeros
+                continue
             raw = f'{line.page}'.zfill(3) + ' ' + str(line.content.value)
             pages.append(raw)
         result = utila.NEWLINE.join(pages)
