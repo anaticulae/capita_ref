@@ -26,6 +26,14 @@ WORKPLAN = [
         ],
         output=('like',),
     ),
+    utila.create_step(
+        'publication',
+        inputs=[
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
+        ],
+        output=('like',),
+    ),
 ]
 
 
