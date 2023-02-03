@@ -31,6 +31,7 @@ WORKPLAN = [
         inputs=[
             utila.ResultFile('rawmaker', 'oneline_text_text'),
             utila.ResultFile('rawmaker', 'oneline_text_positions'),
+            utila.File(name='pdfinfo', optional=True),
         ],
         output=('like',),
     ),
