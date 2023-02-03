@@ -7,7 +7,7 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-utilatest==0.28.1
+utilatest==0.28.2
 
 # reference to test data
 power==2.23.0
@@ -23,5 +23,5 @@ footnote==0.2.6
 headnote==0.5.2
 cleanup==0.9.1
 
-genex==0.37.1
-hardcore==0.8.1
+genex==0.40.0
+hardcore==0.9.0
