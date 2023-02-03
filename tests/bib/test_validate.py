@@ -53,13 +53,13 @@ def test_validate(source, expected, td, mp):
     assert pages == expected
 
 
-@pytest.mark.parametrize(
-    'source',
-    utilatest.test_resources([
-        power.BACHELOR029A_PDF,
-        power.DISS173_PDF,
-    ]),
-)
+PUBLICATIONS = [
+    power.BACHELOR029A_PDF,
+    power.DISS173_PDF,
+]
+
+
+@pytest.mark.parametrize('source', utilatest.test_resources(PUBLICATIONS))
 def test_pub(source, td, mp):
     PublicationValidate(
         source=source,
