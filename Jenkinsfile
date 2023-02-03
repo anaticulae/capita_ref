@@ -38,16 +38,6 @@ pipeline{
                 script{baw.pre()}
             }
         }
-        stage('generate'){
-            steps{
-                script{baw.generate()}
-            }
-        }
-        stage('all'){
-            steps{
-                script{baw.all(32, true)}
-            }
-        }
         stage('quality'){
             failFast true
             parallel{
@@ -61,6 +51,21 @@ pipeline{
                         script{baw.format()}
                     }
                 }
+            }
+        }
+        stage('generate'){
+            steps{
+                script{baw.generate()}
+            }
+        }
+        stage('all'){
+            steps{
+                script{baw.all(32, true)}
+            }
+        }
+        stage('cov'){
+            steps{
+                script{baw.cov(32, true, true)}
             }
         }
         stage('release'){
