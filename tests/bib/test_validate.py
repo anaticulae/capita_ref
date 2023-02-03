@@ -88,7 +88,7 @@ def extract_bibliography(source, pages, td, mp):
 
 class Evaluate(utilatest.BaseLiner):
 
-    def __init__(self, step, source, pages, workdir, mp):
+    def __init__(self, step, source, pages, workdir, mp, archive=ARCHIVE):
         super().__init__(
             # step=f'pdf {source}',
             step=step,
@@ -99,7 +99,7 @@ class Evaluate(utilatest.BaseLiner):
             pages=pages,
             source=power.link(source),
             workdir=workdir,
-            archive=ARCHIVE,
+            archive=archive,
             loader=self.load_sections,
             convert_source=False,
         )
@@ -136,8 +136,8 @@ class BibliographyValidate(Evaluate):
             source=source,
             mp=mp,
             workdir=workdir,
+            archive=ARCHIVE,
         )
-        self.archive = ARCHIVE
 
     def load_sections(self, _):  # pylint:disable=W0613
         path = utila.join(
