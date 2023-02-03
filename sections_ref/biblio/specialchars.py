@@ -200,6 +200,7 @@ def authors(text, verbose: bool = True):
 PATTERN = (
     german.hyperlink,
     german.authors,
+    german.references,
     volume,
     bibtext,
     german.dates,
