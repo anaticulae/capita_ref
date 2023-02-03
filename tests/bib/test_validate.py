@@ -69,7 +69,7 @@ def testfiles() -> list:
 def test_files(source, expected, td, mp):
     expected = list(expected)
     pages = extract_bibliography(source, ':', td, mp)
-    assert pages == expected
+    assert pages == expected, f'{pages} != {expected}'
 
 
 def extract_bibliography(source, pages, td, mp):
