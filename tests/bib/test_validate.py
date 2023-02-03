@@ -57,6 +57,7 @@ def test_validate(source, expected, td, mp):
     'source',
     utilatest.test_resources([
         power.BACHELOR029A_PDF,
+        power.DISS173_PDF,
     ]),
 )
 def test_pub(source, td, mp):
