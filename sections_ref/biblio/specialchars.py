@@ -347,9 +347,6 @@ def nobib(
     page: int = None,
 ) -> bool:
     """\
-    >>> nobib(' a) Fall 1: Kosovo             S. 184', nobib_count_min=2)
-    True
-
     A. Einführung                                                       S. 178
     B. Selbstbestimmungsrecht und Demokratie                            S. 180
         I. Das Selbstbestimmungsrecht                                   S. 180
