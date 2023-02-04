@@ -16,6 +16,15 @@ DESCRIPTION = ('The sections tool analyses every single page of an pdf file '
 
 WORKPLAN = [
     utila.create_step(
+        'publication',
+        inputs=[
+            utila.ResultFile('rawmaker', 'oneline_text_text'),
+            utila.ResultFile('rawmaker', 'oneline_text_positions'),
+            utila.File(name='pdfinfo', optional=True),
+        ],
+        output=('like',),
+    ),
+    utila.create_step(
         'bibliography',
         inputs=[
             utila.ResultFile('rawmaker', 'text_text'),
@@ -23,15 +32,6 @@ WORKPLAN = [
             utila.ResultFile('rawmaker', 'oneline_text_text'),
             utila.ResultFile('rawmaker', 'oneline_text_positions'),
             utila.ResultFile('groupme', 'hefopa_result'),
-        ],
-        output=('like',),
-    ),
-    utila.create_step(
-        'publication',
-        inputs=[
-            utila.ResultFile('rawmaker', 'oneline_text_text'),
-            utila.ResultFile('rawmaker', 'oneline_text_positions'),
-            utila.File(name='pdfinfo', optional=True),
         ],
         output=('like',),
     ),
