@@ -55,10 +55,8 @@ def test_files(source, expected, td, mp):
 def extract_bibliography(source, pages, td, mp):
     source = power.link(source)
     utilatest.fixture_requires(source)
-    tests.run(
-        f'-i {source} --bibliography --pages={pages} -VVV',
-        mp=mp,
-    )
+    cmd = f'-i {source} -i {td.tmpdir} --publication --bibliography --pages={pages} -VVV'
+    tests.run(cmd, mp=mp)
     # verify result
     path = utila.join(td.tmpdir, 'sections_ref__bibliography_like.yaml')
     likelihood = serializeraw.load_likelihood(path)
