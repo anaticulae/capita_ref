@@ -54,11 +54,15 @@ def skip_bibliography(
     pages: tuple = None,
 ) -> set:
     """Determine pages where bib detection is not possbile."""
-    footer = serializeraw.load_footnotes(
-        footer,
-        pages,
-    )
-    nobib = set(item.page for item in footer if len(item.content) >= 2)
+    nobib = set()
+    if utila.exists(footer):
+        footer = serializeraw.load_footnotes(
+            footer,
+            pages,
+        )
+        nobib = set(item.page for item in footer if len(item.content) >= 2)
+    else:
+        utila.log(f'missing footer: {footer}, do not skip bibliography')
     if utila.exists(publications):
         publications = serializeraw.load_likelihood(publications, pages=pages)
         for item in publications:
