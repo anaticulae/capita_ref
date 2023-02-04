@@ -7,8 +7,6 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import functools
-
 import power
 import pytest
 import serializeraw
@@ -19,8 +17,6 @@ import sections_ref
 import tests
 
 ARCHIVE = utila.join(sections_ref.ROOT, 'tests/bib/expected', exist=True)
-
-PUBLICATION = utila.join(sections_ref.ROOT, 'tests/pub/expected', exist=True)
 
 
 @pytest.mark.parametrize(
@@ -51,22 +47,6 @@ def test_bib(source, td, mp):
 def test_validate(source, expected, td, mp):
     pages = extract_bibliography(source, ':', td, mp)
     assert pages == expected
-
-
-PUBLICATIONS = [
-    power.BACHELOR029A_PDF,
-    power.DISS173_PDF,
-    power.HC_DISS128,
-]
-
-
-@pytest.mark.parametrize('source', utilatest.test_resources(PUBLICATIONS))
-def test_pub(source, td, mp):
-    PublicationValidate(
-        source=source,
-        workdir=td.tmpdir,
-        mp=mp,
-    ).evaluate()
 
 
 def testfiles() -> list:
@@ -104,48 +84,7 @@ def extract_bibliography(source, pages, td, mp):
     return pages
 
 
-class Evaluate(utilatest.BaseLiner):
-
-    def __init__(self, step, source, pages, workdir, mp, archive=ARCHIVE):
-        super().__init__(
-            # step=f'pdf {source}',
-            step=step,
-            program=functools.partial(
-                tests.run,
-                mp=mp,
-            ),
-            pages=pages,
-            source=power.link(source),
-            workdir=workdir,
-            archive=archive,
-            loader=self.load_sections,
-            convert_source=False,
-        )
-
-    def load_sections(self, _):  # pylint:disable=W0613
-        loaded = serializeraw.load_sections(self.workdir)
-        return loaded
-
-    def raw(self, value) -> str:
-        result = []
-        for section in value:
-            line = rawline(section)
-            result.append(line)
-            for item in section:
-                line = rawline(item)
-                result.append('    ' + line)
-        raw = utila.NEWLINE.join(result)
-        return raw
-
-
-def rawline(item) -> str:
-    start = str(item.start).zfill(3)
-    end = str(item.end).zfill(3)
-    line = f'{start} {end} {item.__class__.__name__}'
-    return line
-
-
-class BibliographyValidate(Evaluate):
+class BibliographyValidate(tests.Evaluate):
 
     def __init__(self, source, workdir, mp):
         super().__init__(
@@ -168,38 +107,6 @@ class BibliographyValidate(Evaluate):
     def raw(self, value) -> str:
         pages = []
         for line in value:
-            raw = f'{line.page}'.zfill(3) + ' ' + str(line.content.value)
-            pages.append(raw)
-        result = utila.NEWLINE.join(pages)
-        return result
-
-
-class PublicationValidate(Evaluate):
-
-    def __init__(self, source, workdir, mp):
-        super().__init__(
-            step='publication',
-            pages=':',
-            source=source,
-            mp=mp,
-            workdir=workdir,
-            archive=PUBLICATION,
-        )
-
-    def load_sections(self, _):  # pylint:disable=W0613
-        path = utila.join(
-            self.workdir,
-            'sections_ref__publication_like.yaml',
-        )
-        loaded = serializeraw.load_likelihood(path)
-        return loaded
-
-    def raw(self, value) -> str:
-        pages = []
-        for line in value:
-            if not line.content.value:
-                # do not write zeros
-                continue
             raw = f'{line.page}'.zfill(3) + ' ' + str(line.content.value)
             pages.append(raw)
         result = utila.NEWLINE.join(pages)
