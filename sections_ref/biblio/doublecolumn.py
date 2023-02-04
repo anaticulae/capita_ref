@@ -16,6 +16,7 @@ import utila
 import sections_ref.biblio.utils
 
 LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=30)
+
 MARKER_COUNT_MIN = configo.HV_INT_PLUS(default=50)
 
 
