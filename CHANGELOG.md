@@ -2,6 +2,28 @@
 
 Every noteable change is logged here.
 
+## v0.3.0 (2023-02-04)
+
+### Feature
+
+* make footer skipper optional (c4d7f69031b4)
+* use publications to skip bib area (a886b177d397)
+* run publication area detector first (4e8220156e04)
+* disable feature for too few pages (ecdc5c2efe95)
+* add publication step (5dc8713e6291)
+* use new bib ref pattern (0bc5c839e92a)
+
+### Chore
+
+* extend test data generator (a4a51aee6ee7)
+* add cov step (9469c527dae9)
+* replace with new steps (c8605454f0c1)
+* upgrade requirements.txt (d20b40710f0c)
+* upgrade requirements.txt (183b4a955374)
+* extend test data generator (4d161de70c6b)
+* upgrade requirements.txt (0b82ab2aa67d)
+* upgrade Jenkinsfile (ee8ed19d1b09)
+
 ## v0.2.1 (2023-01-24)
 
 ### Documentation
