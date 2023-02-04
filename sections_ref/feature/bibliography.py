@@ -9,6 +9,7 @@
 
 import sections.utils.spa
 import serializeraw
+import utila
 
 import sections_ref.biblio.strategy
 
@@ -19,10 +20,12 @@ def work(
     document_oneline: str,
     position_oneline: str,
     footer: str,
+    publications: str,
     pages: tuple = None,
 ) -> str:
     nobib = skip_bibliography(
         footer,
+        publications,
         pages=pages,
     )
     normal = sections.utils.spa.Data(
@@ -47,6 +50,7 @@ def work(
 
 def skip_bibliography(
     footer: str,
+    publications: str,
     pages: tuple = None,
 ) -> set:
     """Determine pages where bib detection is not possbile."""
@@ -55,4 +59,11 @@ def skip_bibliography(
         pages,
     )
     nobib = set(item.page for item in footer if len(item.content) >= 2)
+    if utila.exists(publications):
+        publications = serializeraw.load_likelihood(publications, pages=pages)
+        for item in publications:
+            if item.content.value < 1.0:
+                continue
+            utila.debug(f'pub can not be a bib, page: {item.page}')
+            nobib.add(item.page)
     return nobib

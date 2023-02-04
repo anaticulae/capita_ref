@@ -32,6 +32,7 @@ WORKPLAN = [
             utila.ResultFile('rawmaker', 'oneline_text_text'),
             utila.ResultFile('rawmaker', 'oneline_text_positions'),
             utila.ResultFile('groupme', 'hefopa_result'),
+            utila.ResultFile('sections_ref', 'publication_like', optional=True),
         ],
         output=('like',),
     ),
