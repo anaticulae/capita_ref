@@ -31,6 +31,17 @@ def test_bib(source, td, mp):
     ).evaluate()
 
 
+NO_BIB = [
+    pytest.param(power.BOOK173_PDF, '119', id='book173p119'),
+]
+
+
+@pytest.mark.parametrize('source, pages', NO_BIB)
+def test_no_bib(source, pages, td, mp):
+    pages = extract_bibliography(source, pages, td, mp)
+    assert not pages, str(pages)
+
+
 def testfiles() -> list:
     result = []
     for source in tests.conftest.RESOURCES:
