@@ -53,6 +53,11 @@ pipeline{
                 }
             }
         }
+        stage('baseline'){
+            steps{
+                script{baw.baseline()}
+            }
+        }
         stage('generate'){
             steps{
                 script{baw.generate()}
