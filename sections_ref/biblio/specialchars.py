@@ -338,8 +338,8 @@ NOBIB_COUNT_MIN = configo.HV_INT_PLUS(default=35)
 NOBIB = utila.compiles(r"""
     \s
     (
-        [a-h]{1,2}[ ]{0,2}[\.\)][ ]{0,3}\w|
-        \d{1,2}[ ]{0,2}\.[ ]{0,3}\w|
+        [a-h]{1,2}[ ]{0,2}[\.\)][ ]{0,3}[a-z]|
+        \d{1,2}[ ]{0,2}\.[ ]{0,3}[a-z]|
         S\.[ ]{0,3}\d{1,3}
     )
 """)
@@ -350,7 +350,7 @@ def nobib(
     nobib_count_min: int = NOBIB_COUNT_MIN,
     page: int = None,
 ) -> bool:
-    """\
+    r"""\
     A. Einführung                                                       S. 178
     B. Selbstbestimmungsrecht und Demokratie                            S. 180
         I. Das Selbstbestimmungsrecht                                   S. 180
@@ -358,6 +358,9 @@ def nobib(
             2. Selbstbestimmungsrecht und Staatenzerfall                S. 182
             3. Die Beziehung zwischen dem Selbstbestimmungsrecht und    S. 183
                 a) Fall 1: Kosovo                                       S. 184
+
+    >>> nobib('\n5.4', 1)
+    False
     """
     tocs = list(NOBIB.finditer(raw))
     if len(tocs) >= nobib_count_min:
