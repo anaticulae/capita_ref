@@ -7,7 +7,10 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
+import power
 import pytest
+import serializeraw
+import utilatest
 
 import sections_ref.biblio.specialchars
 
@@ -17,3 +20,15 @@ import sections_ref.biblio.specialchars
 ])
 def test_nobib(value, nobib_count_min):
     assert sections_ref.biblio.specialchars.nobib(value, nobib_count_min)
+
+
+@pytest.mark.parametrize('source, page', [
+    pytest.param(power.DISS172_PDF, 90, id='diss172_90'),
+    pytest.param(power.DISS172_PDF, 142, id='diss172_142'),
+    pytest.param(power.DISS172_PDF, 143, id='diss172_143'),
+])
+def test_document_page_nobib(source, page):
+    utilatest.fixture_requires(source)
+    source = power.link(source)
+    content = serializeraw.ptcn_frompath(source, pages=page)[0]
+    assert not sections_ref.biblio.specialchars.nobib(content.debug)
