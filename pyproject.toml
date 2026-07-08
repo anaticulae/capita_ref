@@ -1,0 +1,110 @@
+[build-system]
+requires = [
+    "setuptools>=82.0.1",
+    "wheel>=0.47.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "capita_ref"
+version = "0.3.1"
+description = ""
+requires-python = ">=3.12"
+authors = [
+    { name = "Helmut Konrad Schewe", email = "helmutus@outlook.com" },
+]
+dependencies = [
+    "utilo>=2.109.0,<3.0.0",
+    "iamraw>=4.92.0,<5.0.0",
+    "configos>=1.0.4,<2.0.0",
+    "elementae>=1.0.1,<2.0.0",
+    "geostrat>=1.5.1,<2.0.0",
+    "germania>=1.32.0,<2.0.0",
+    "layouta>=1.0.0,<2.0.0",
+    "capita>=1.25.2,<2.0.0",
+]
+keywords = []
+classifiers = [
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+license = "MIT"
+license-files = [
+    "LICENSE",
+]
+
+[project.readme]
+file = "README"
+content-type = "text/markdown"
+
+[project.optional-dependencies]
+dev = [
+    "utilotest==1.0.4",
+    "hoverpower==1.5.1",
+    "rawmaker==2.40.5",
+    "groupmes==1.1.0",
+    "pagenumber==1.0.0",
+    "ibidem==1.0.2",
+    "headnote==1.0.3",
+    "mundare==1.0.2",
+    "gennex==1.0.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/anaticulae/capita_ref"
+Repository = "https://github.com/anaticulae/capita_ref"
+
+[project.scripts]
+sections_ref = "capita_ref.cli:main"
+
+[tool.semantic_release]
+version_toml = [
+    "pyproject.toml:project.version",
+]
+
+[tool.semantic_release.changelog]
+mode = "init"
+output_format = "md"
+
+[tool.semantic_release.changelog.default_templates]
+changelog_file = "CHANGELOG"
+
+[tool.semantic_release.commit_parser_options]
+patch_tags = [
+    "fix",
+    "perf",
+    "build",
+    "chore",
+    "ci",
+    "docs",
+    "style",
+    "refactor",
+    "test",
+    "deps",
+]
+
+[tool.setuptools.packages.find]
+where = [
+    ".",
+]
+include = [
+    "capita_ref",
+    "capita_ref.biblio",
+    "capita_ref.feature",
+]
+exclude = [
+    "tests*",
+]
+
+[tool.hoverpower]
+packages = [
+    "BACHELOR",
+    "BOOK",
+    "DISS",
+    "DOCU",
+    "HOME",
+    "MASTER",
+    "ORDER",
+    "PAPER",
+]
