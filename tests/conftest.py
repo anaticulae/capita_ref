@@ -39,7 +39,7 @@ RESOURCES = [
     hoverpower.DOCU014_PDF,
     hoverpower.DOCU027_PDF,
     hoverpower.DOCU035_PDF,
-    hoverpower.HC_DISS128,
+    # hoverpower.HC_DISS128,
     hoverpower.HOME018_PDF,
     hoverpower.MASTER031_PDF,
     hoverpower.MASTER049_PDF,

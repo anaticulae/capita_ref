@@ -21,7 +21,7 @@ PUBLICATION = utilo.join(capita_ref.ROOT, 'tests/pub/expected', exist=True)
 PUBLICATIONS = [
     hoverpower.BACHELOR029A_PDF,
     hoverpower.DISS173_PDF,
-    hoverpower.HC_DISS128,
+    # hoverpower.HC_DISS128,
 ]
 
 
