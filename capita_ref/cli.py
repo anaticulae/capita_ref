@@ -7,32 +7,32 @@
 # be prosecuted under federal law. Its content is company confidential.
 #==============================================================================
 
-import utila
+import utilo
 
-import sections_ref
+import capita_ref
 
 DESCRIPTION = ('The sections tool analyses every single page of an pdf file '
                'and determines the likelihood to be an feature')
 
 WORKPLAN = [
-    utila.create_step(
+    utilo.create_step(
         'publication',
         inputs=[
-            utila.ResultFile('rawmaker', 'oneline_text_text'),
-            utila.ResultFile('rawmaker', 'oneline_text_positions'),
-            utila.File(name='pdfinfo', optional=True),
+            utilo.ResultFile('rawmaker', 'oneline_text_text'),
+            utilo.ResultFile('rawmaker', 'oneline_text_positions'),
+            utilo.File(name='pdfinfo', optional=True),
         ],
         output=('like',),
     ),
-    utila.create_step(
+    utilo.create_step(
         'bibliography',
         inputs=[
-            utila.ResultFile('rawmaker', 'text_text'),
-            utila.ResultFile('rawmaker', 'text_positions'),
-            utila.ResultFile('rawmaker', 'oneline_text_text'),
-            utila.ResultFile('rawmaker', 'oneline_text_positions'),
-            utila.ResultFile('groupme', 'hefopa_result', optional=True),
-            utila.ResultFile('sections_ref', 'publication_like', optional=True),
+            utilo.ResultFile('rawmaker', 'text_text'),
+            utilo.ResultFile('rawmaker', 'text_positions'),
+            utilo.ResultFile('rawmaker', 'oneline_text_text'),
+            utilo.ResultFile('rawmaker', 'oneline_text_positions'),
+            utilo.ResultFile('groupme', 'hefopa_result', optional=True),
+            utilo.ResultFile('sections_ref', 'publication_like', optional=True),
         ],
         output=('like',),
     ),
@@ -40,17 +40,17 @@ WORKPLAN = [
 
 
 def main():
-    utila.featurepack(
+    utilo.featurepack(
         workplan=WORKPLAN,
-        root=sections_ref.ROOT,
-        featurepackage='sections_ref.feature',
-        config=utila.FeaturePackConfig(
+        root=capita_ref.ROOT,
+        featurepackage='capita_ref.feature',
+        config=utilo.FeaturePackConfig(
             description=DESCRIPTION,
             multiprocessed=True,
-            name=sections_ref.PROCESS,
+            name=capita_ref.PROCESS,
             pages=True,
             singleinput=False,  # require result folder, ignore single pdf file
             profileflag=True,
-            version=sections_ref.__version__,
+            version=capita_ref.__version__,
         ),
     )

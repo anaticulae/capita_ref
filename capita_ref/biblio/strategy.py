@@ -7,13 +7,13 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import sections_ref.biblio.doublecolumn
-import sections_ref.biblio.specialchars
+import capita_ref.biblio.doublecolumn
+import capita_ref.biblio.specialchars
 
 
 def extract(normal: 'spa.Data', oneline: 'spa.Data') -> list:
-    special = sections_ref.biblio.specialchars.extract(oneline)
-    double = sections_ref.biblio.doublecolumn.extract(normal)
+    special = capita_ref.biblio.specialchars.extract(oneline)
+    double = capita_ref.biblio.doublecolumn.extract(normal)
     # select "better" result
     special_sum = sum(item.content.value for item in special)
     double_sum = sum(item.content.value for item in double)

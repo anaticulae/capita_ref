@@ -7,14 +7,14 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import configo
-import elements.headline.lookup
-import sections.feature
-import sections.utils.headline
+import capita.feature
+import capita.utils.headline
+import configos
+import elementae.headline.lookup
 import serializeraw
-import utila
+import utilo
 
-FEATURE_PAGE_COUNT_MIN = configo.HV_INT_PLUS(default=120)
+FEATURE_PAGE_COUNT_MIN = configos.HV_INT_PLUS(default=120)
 
 EMPTY = serializeraw.dump_likelihood([])
 
@@ -25,17 +25,17 @@ def work(
     pdfinfo: str,
     pages=None,
 ) -> str:
-    if utila.exists(pdfinfo):
+    if utilo.exists(pdfinfo):
         loaded = serializeraw.load_pdfinfo(pdfinfo)
         if loaded.pages < FEATURE_PAGE_COUNT_MIN:
-            utila.log(f'skip publication, too few pages: {loaded.pages}')
+            utilo.log(f'skip publication, too few pages: {loaded.pages}')
             return EMPTY
     navigators = serializeraw.ptn_fromfile(
         oneline_text,
         oneline_textpositions,
         pages=pages,
     )
-    result = sections.feature.pagebypage(
+    result = capita.feature.pagebypage(
         navigators,
         analyse_page,
         name='publication',
@@ -45,13 +45,13 @@ def work(
 
 
 def analyse_page(content):
-    headlines = sections.utils.headline.headlines(content)
+    headlines = capita.utils.headline.headlines(content)
     if not headlines:
-        return sections.feature.NO_PAGE
-    if utila.similar(
-            expected=elements.headline.lookup.PUBLICATION,
+        return capita.feature.NO_PAGE
+    if utilo.similar(
+            expected=elementae.headline.lookup.PUBLICATION,
             current=headlines,
             maxdiff=0.95,
     ):
-        return sections.feature.PERFECT
-    return sections.feature.NO_PAGE
+        return capita.feature.PERFECT
+    return capita.feature.NO_PAGE

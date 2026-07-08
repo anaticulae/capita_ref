@@ -7,25 +7,25 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
-import sections_ref
+import capita_ref
 import tests
 
-PUBLICATION = utila.join(sections_ref.ROOT, 'tests/pub/expected', exist=True)
+PUBLICATION = utilo.join(capita_ref.ROOT, 'tests/pub/expected', exist=True)
 
 PUBLICATIONS = [
-    power.BACHELOR029A_PDF,
-    power.DISS173_PDF,
-    power.HC_DISS128,
+    hoverpower.BACHELOR029A_PDF,
+    hoverpower.DISS173_PDF,
+    hoverpower.HC_DISS128,
 ]
 
 
-@pytest.mark.parametrize('source', utilatest.test_resources(PUBLICATIONS))
+@pytest.mark.parametrize('source', utilotest.test_resources(PUBLICATIONS))
 def test_pub(source, td, mp):
     PublicationValidate(
         source=source,
@@ -47,9 +47,9 @@ class PublicationValidate(tests.Evaluate):
         )
 
     def load_sections(self, _):  # pylint:disable=W0613
-        path = utila.join(
+        path = utilo.join(
             self.workdir,
-            'sections_ref__publication_like.yaml',
+            f'{capita_ref.PROCESS}__publication_like.yaml',
         )
         loaded = serializeraw.load_likelihood(path)
         return loaded
@@ -62,5 +62,5 @@ class PublicationValidate(tests.Evaluate):
                 continue
             raw = f'{line.page}'.zfill(3) + ' ' + str(line.content.value)
             pages.append(raw)
-        result = utila.NEWLINE.join(pages)
+        result = utilo.NEWLINE.join(pages)
         return result

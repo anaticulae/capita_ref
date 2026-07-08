@@ -57,6 +57,7 @@ Repository = "https://github.com/anaticulae/capita_ref"
 
 [project.scripts]
 sections_ref = "capita_ref.cli:main"
+capita_ref = "capita_ref.cli:main"
 
 [tool.semantic_release]
 version_toml = [

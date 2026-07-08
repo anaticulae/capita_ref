@@ -7,21 +7,21 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
-import sections_ref
+import capita_ref
 import tests
 
-ARCHIVE = utila.join(sections_ref.ROOT, 'tests/bib/expected', exist=True)
+ARCHIVE = utilo.join(capita_ref.ROOT, 'tests/bib/expected', exist=True)
 
 
 @pytest.mark.parametrize(
     'source',
-    utilatest.test_resources(tests.conftest.RESOURCES),
+    utilotest.test_resources(tests.conftest.RESOURCES),
 )
 def test_bib(source, td, mp):
     BibliographyValidate(
@@ -32,7 +32,7 @@ def test_bib(source, td, mp):
 
 
 NO_BIB = [
-    pytest.param(power.BOOK173_PDF, '119', id='book173p119'),
+    pytest.param(hoverpower.BOOK173_PDF, '119', id='book173p119'),
 ]
 
 
@@ -45,12 +45,12 @@ def test_no_bib(source, pages, td, mp):
 def testfiles() -> list:
     result = []
     for source in tests.conftest.RESOURCES:
-        pages = power.bib(source, default=None)
+        pages = hoverpower.bib(source, default=None)
         if pages is None:
-            utila.error(f'no pages: {source}, define in power for testing')
+            utilo.error(f'no pages: {source}, define in hoverpower for testing')
             continue
-        testname = utila.file_name(source)
-        pages: str = utila.parse_pages(pages)
+        testname = utilo.file_name(source)
+        pages: str = utilo.parse_pages(pages)
         item = pytest.param(source, pages, id=testname)
         result.append(item)
     return result
@@ -64,12 +64,12 @@ def test_files(source, expected, td, mp):
 
 
 def extract_bibliography(source, pages, td, mp):
-    source = power.link(source)
-    utilatest.fixture_requires(source)
+    source = hoverpower.link(source)
+    utilotest.fixture_requires(source)
     cmd = f'-i {source} -i {td.tmpdir} --publication --bibliography --pages={pages} -VVV'
     tests.run(cmd, mp=mp)
     # verify result
-    path = utila.join(td.tmpdir, 'sections_ref__bibliography_like.yaml')
+    path = utilo.join(td.tmpdir, f'{capita_ref.PROCESS}__bibliography_like.yaml') # yapf:disable
     likelihood = serializeraw.load_likelihood(path)
     pages = [item.page for item in likelihood if item.content.value > 0.0]
     return pages
@@ -88,9 +88,9 @@ class BibliographyValidate(tests.Evaluate):
         )
 
     def load_sections(self, _):  # pylint:disable=W0613
-        path = utila.join(
+        path = utilo.join(
             self.workdir,
-            'sections_ref__bibliography_like.yaml',
+            f'{capita_ref.PROCESS}__bibliography_like.yaml',
         )
         loaded = serializeraw.load_likelihood(path)
         return loaded
@@ -100,5 +100,5 @@ class BibliographyValidate(tests.Evaluate):
         for line in value:
             raw = f'{line.page}'.zfill(3) + ' ' + str(line.content.value)
             pages.append(raw)
-        result = utila.NEWLINE.join(pages)
+        result = utilo.NEWLINE.join(pages)
         return result

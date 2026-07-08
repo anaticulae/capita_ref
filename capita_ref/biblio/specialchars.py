@@ -21,38 +21,38 @@ detected.
 
 import statistics
 
-import configo
-import elements.headline.lookup
-import german
-import german.pattern.author
-import sections.feature
-import sections.utils.headline
-import sections.utils.spa
+import capita.feature
+import capita.utils.headline
+import capita.utils.spa
+import configos
+import elementae.headline.lookup
+import germania
+import germania.pattern.author
 import texmex
-import utila
+import utilo
 
-import sections_ref.biblio
-import sections_ref.biblio.utils
+import capita_ref.biblio
+import capita_ref.biblio.utils
 
-LIKELIHOOD_MIN = configo.HV_PERCENT_PLUS(default=30.0)
+LIKELIHOOD_MIN = configos.HV_PERCENT_PLUS(default=30.0)
 
 
-def extract(data: sections.utils.spa.Data) -> list:
-    config = sections.utils.spa.Config(
+def extract(data: capita.utils.spa.Data) -> list:
+    config = capita.utils.spa.Config(
         likelihood_name='bibliography_table',
         page_analysis=analyse_page,
     )
-    extracted = sections.utils.spa.work(data=data, config=config)
+    extracted = capita.utils.spa.work(data=data, config=config)
     # ignore to low valued bib pages
     valid = [item for item in extracted if item.content.value > LIKELIHOOD_MIN]
-    hugest = sections_ref.biblio.utils.cluster_bibpages(valid)
+    hugest = capita_ref.biblio.utils.cluster_bibpages(valid)
     return hugest
 
 
-SPECIAL_CHAR_BONUS = configo.HV_PERCENT_PLUS(default=30)
+SPECIAL_CHAR_BONUS = configos.HV_PERCENT_PLUS(default=30)
 
 
-def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
+def analyse_page(ptn: texmex.PTN) -> capita.feature.StatisticalResultItem:
     raw = ptn.debug
     marker = special_pattern(raw, page=ptn.page)
     if special_chars(raw):
@@ -60,7 +60,7 @@ def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
         marker *= (1 + SPECIAL_CHAR_BONUS)
     if content_page(raw):
         if marker:
-            utila.debug(f'contentpage p{ptn.page}/marker{marker}=0')
+            utilo.debug(f'contentpage p{ptn.page}/marker{marker}=0')
         marker = 0
     likelihood = 0.0
     if marker and len(ptn) >= 1:
@@ -79,11 +79,11 @@ def analyse_page(ptn: texmex.PTN) -> sections.feature.StatisticalResultItem:
 
 def bib_headline(ptn: texmex.PTN) -> bool:
     """Determine if a BIB-HEADLINE is on current navigator."""
-    headlines = sections.utils.headline.headlines(ptn)
+    headlines = capita.utils.headline.headlines(ptn)
     if not headlines:
         return False
-    similar = utila.similar(
-        expected=elements.headline.lookup.BIBLIOGRAPHY,
+    similar = utilo.similar(
+        expected=elementae.headline.lookup.BIBLIOGRAPHY,
         current=headlines,
         maxdiff=0.95,
     )
@@ -92,7 +92,7 @@ def bib_headline(ptn: texmex.PTN) -> bool:
     return True
 
 
-VOLUME = utila.compiles(r"""
+VOLUME = utilo.compiles(r"""
 (
     (AUFLAGE|VOL\.)
     [ ]{0,2}
@@ -112,7 +112,7 @@ def volume(text, verbose: bool = True):
     >>> volume('Schriftsprache der Gegenwart. 5. Auflage.')
     [(5, '5. Auflage')]
     """
-    # TODO: MOVE TO GERMAN
+    # TODO: MOVE TO germania
     result = []
     for item in VOLUME.finditer(text):
         group = item.groups()
@@ -124,7 +124,7 @@ def volume(text, verbose: bool = True):
     return result
 
 
-BIBS = utila.compiles(r"""
+BIBS = utilo.compiles(r"""
 (
     Hrsg\.|
     Aufl\.|
@@ -147,7 +147,7 @@ def bibtext(text, verbose: bool = True):
     return result
 
 
-YEARS = utila.compiles(r'\b(((19|20)\d{2})[a-z]?)\b')
+YEARS = utilo.compiles(r'\b(((19|20)\d{2})[a-z]?)\b')
 
 
 def years(raw: str, min_=1950, max_=2025, verbose: bool = False):
@@ -170,7 +170,7 @@ def years(raw: str, min_=1950, max_=2025, verbose: bool = False):
     return result
 
 
-AUTHORS = utila.compiles(r"""
+AUTHORS = utilo.compiles(r"""
     (
         [a-z]{4,18}[ ]{1,4}[a-z]\.|
         \b[a-z]\.[ ]{1,4}[a-z]{4,18}
@@ -188,10 +188,10 @@ def authors(text, verbose: bool = True):
     >>> authors('H. Frankfurt is ein Name')
     [('H. Frankfurt', 'H. Frankfurt')]
     """
-    # TODO: REPLACE WITH GERMAN CODE
+    # TODO: REPLACE WITH germania CODE
     result = []
     for item in AUTHORS.finditer(text):
-        valid = german.pattern.author.simple(item[0])
+        valid = germania.pattern.author.simple(item[0])
         if not valid:
             continue
         if verbose:
@@ -202,13 +202,13 @@ def authors(text, verbose: bool = True):
 
 
 PATTERN = (
-    german.hyperlink,
-    german.authors,
-    german.references,
+    germania.hyperlink,
+    germania.authors,
+    germania.references,
     volume,
     bibtext,
-    german.dates,
-    german.pagenumbers,
+    germania.dates,
+    germania.pagenumbers,
     years,
     authors,
 )
@@ -230,19 +230,19 @@ def special_pattern(raw: str, page: int) -> int:
     lines = len(raw.splitlines())
     marker_min = MARKER_COUNT_MIN(lines)
     if marker < marker_min:
-        utila.debug(f'too few marker p{page}/{lines}l: {marker}/{marker_min} '
+        utilo.debug(f'too few marker p{page}/{lines}l: {marker}/{marker_min} '
                     f'{allmarker}')
         return 0
-    pages = collect_and_replace(raw, (german.pagenumbers,))
+    pages = collect_and_replace(raw, (germania.pagenumbers,))
     pagerate = len(pages) / allmarker
     if pagerate > 0.8:
         msg = f'too many pages {page}: {pagerate} {len(pages)} {allmarker}'
-        utila.debug(msg)
+        utilo.debug(msg)
         return 0
     return allmarker
 
 
-MARKER_COUNT_MIN = configo.HolyTable(items=(
+MARKER_COUNT_MIN = configos.HolyTable(items=(
     (0, 5),
     (5, 5),
     (10, 8),
@@ -265,16 +265,16 @@ def collect_and_replace(raw: str, pattern: list) -> list:
 
 SPECIAL_CHARS = ";,/:[]()&"
 
-SPECIAL_CHARS_CLASSIFIER_MIN = configo.HV_PERCENT_PLUS(default=30.0)
+SPECIAL_CHARS_CLASSIFIER_MIN = configos.HV_PERCENT_PLUS(default=30.0)
 
-SPECIAL_CHARS_WORDCOUNT_MIN = configo.HV_INT_PLUS(default=40)
+SPECIAL_CHARS_WORDCOUNT_MIN = configos.HV_INT_PLUS(default=40)
 
 
 def special_chars(raw: str) -> bool:
     # TODO: A LOT OF MISMATCHES AS A RESULT OF PROGRAM CODE IN DOCUMENT
     result = []
     for line in raw.splitlines():
-        parsed = german.word_tokenize(line, validate_sentences=False)
+        parsed = germania.word_tokenize(line, validate_sentences=False)
         result.extend(parsed)
     word_count = len(result)
     if word_count < SPECIAL_CHARS_WORDCOUNT_MIN:
@@ -286,20 +286,20 @@ def special_chars(raw: str) -> bool:
     return True
 
 
-SENTENCE_MEAN_TRUST_MIN = configo.HV_INT_PLUS(default=100)
+SENTENCE_MEAN_TRUST_MIN = configos.HV_INT_PLUS(default=100)
 
-SENTENCE_SIGN_COUNT_MAX = configo.HV_INT_PLUS(default=20)
+SENTENCE_SIGN_COUNT_MAX = configos.HV_INT_PLUS(default=20)
 
 
 def content_page(raw: str) -> bool:
     """Verify that page contains a `normal` number of sentences."""
-    sentences = german.sentence_tokenize(raw, normalize_spaces=True)
+    sentences = germania.sentence_tokenize(raw, normalize_spaces=True)
     if not sentences:
         return False
-    # german does not split sentences at `:` but bib tables uses : often
+    # germania does not split sentences at `:` but bib tables uses : often
     # for separating parts. If we do not split by double collon we archive
     # a lot of false postive results.
-    sentences = utila.flat([split_doublecolon(item) for item in sentences])
+    sentences = utilo.flat([split_doublecolon(item) for item in sentences])
     length_mean = statistics.mean([len(sentence) for sentence in sentences])
     signs = [
         item.count(',') + item.count(';') + item.count('.') + item.count('-')
@@ -313,7 +313,7 @@ def content_page(raw: str) -> bool:
     return False
 
 
-DOUBLE_COLON = utila.compiles(r"""
+DOUBLE_COLON = utilo.compiles(r"""
     (?!https?)
     \:
     (?!//)
@@ -333,9 +333,9 @@ def split_doublecolon(text: str) -> list:
     return DOUBLE_COLON.split(text)
 
 
-NOBIB_COUNT_MIN = configo.HV_INT_PLUS(default=35)
+NOBIB_COUNT_MIN = configos.HV_INT_PLUS(default=35)
 
-NOBIB = utila.compiles(r"""
+NOBIB = utilo.compiles(r"""
     \s
     (
         [a-h]{1,2}[ ]{0,2}[\.\)][ ]{0,3}[a-z]|
@@ -364,6 +364,6 @@ def nobib(
     """
     tocs = list(NOBIB.finditer(raw))
     if len(tocs) >= nobib_count_min:
-        utila.debug(f'too many toc pattern inside bib: {len(tocs)}; p{page}')
+        utilo.debug(f'too many toc pattern inside bib: {len(tocs)}; p{page}')
         return True
     return False

@@ -7,19 +7,19 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import power
+import hoverpower
 import pytest
-import utila
-import utilatest
+import utilo
+import utilotest
 
 import tests
 
 
-@utilatest.requires(power.HC_DISS128)
+@utilotest.requires(hoverpower.HC_DISS128)
 def test_run_diss128_hc(testdir, mp):
-    source = power.link(power.HC_DISS128)
-    if not utila.exists(source):
-        # TODO: REMOVE AFTER FIXING UTILATEST
+    source = hoverpower.link(hoverpower.HC_DISS128)
+    if not utilo.exists(source):
+        # TODO: REMOVE AFTER FIXING utiloTEST
         pytest.skip(f'require/generated: {source}')
     cmd = f'-i {source} -o {testdir.tmpdir}'
     tests.run(cmd, mp=mp)

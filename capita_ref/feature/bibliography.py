@@ -7,11 +7,11 @@
 # be prosecuted under federal law. Its content is company confidential.
 # =============================================================================
 
-import sections.utils.spa
+import capita.utils.spa
 import serializeraw
-import utila
+import utilo
 
-import sections_ref.biblio.strategy
+import capita_ref.biblio.strategy
 
 
 def work(
@@ -28,19 +28,19 @@ def work(
         publications,
         pages=pages,
     )
-    normal = sections.utils.spa.Data(
+    normal = capita.utils.spa.Data(
         document=document,
         position=position,
         pages=pages,
         skips=nobib,
     )
-    oneline = sections.utils.spa.Data(
+    oneline = capita.utils.spa.Data(
         document=document_oneline,
         position=position_oneline,
         pages=pages,
         skips=nobib,
     )
-    hugest = sections_ref.biblio.strategy.extract(
+    hugest = capita_ref.biblio.strategy.extract(
         normal,
         oneline,
     )
@@ -55,19 +55,19 @@ def skip_bibliography(
 ) -> set:
     """Determine pages where bib detection is not possbile."""
     nobib = set()
-    if utila.exists(footer):
+    if utilo.exists(footer):
         footer = serializeraw.load_footnotes(
             footer,
             pages,
         )
         nobib = set(item.page for item in footer if len(item.content) >= 2)
     else:
-        utila.log(f'missing footer: {footer}, do not skip bibliography')
-    if utila.exists(publications):
+        utilo.log(f'missing footer: {footer}, do not skip bibliography')
+    if utilo.exists(publications):
         publications = serializeraw.load_likelihood(publications, pages=pages)
         for item in publications:
             if item.content.value < 1.0:
                 continue
-            utila.debug(f'pub can not be a bib, page: {item.page}')
+            utilo.debug(f'pub can not be a bib, page: {item.page}')
             nobib.add(item.page)
     return nobib

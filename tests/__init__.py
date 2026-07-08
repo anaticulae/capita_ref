@@ -9,17 +9,17 @@
 
 import functools
 
-import power
+import hoverpower
 import serializeraw
-import utila
-import utilatest
+import utilo
+import utilotest
 
-import sections_ref
+import capita_ref
 
-run, fail = utilatest.create_cli_runner(sections_ref)
+run, fail = utilotest.create_cli_runner(capita_ref)
 
 
-class Evaluate(utilatest.BaseLiner):
+class Evaluate(utilotest.BaseLiner):
 
     def __init__(self, step, source, pages, workdir, mp, archive):
         super().__init__(
@@ -27,7 +27,7 @@ class Evaluate(utilatest.BaseLiner):
             step=step,
             program=functools.partial(run, mp=mp),
             pages=pages,
-            source=power.link(source),
+            source=hoverpower.link(source),
             workdir=workdir,
             archive=archive,
             loader=self.load_sections,
@@ -46,7 +46,7 @@ class Evaluate(utilatest.BaseLiner):
             for item in section:
                 line = rawline(item)
                 result.append('    ' + line)
-        raw = utila.NEWLINE.join(result)
+        raw = utilo.NEWLINE.join(result)
         return raw
 
 

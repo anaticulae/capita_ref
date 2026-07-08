@@ -76,7 +76,7 @@ Every noteable change is logged here.
 
 * add missing requirements (b4ac864ecaef)
 * add iamraw (5a727131c821)
-* add utila (f2964e8109fa)
+* add utilo (f2964e8109fa)
 * add Jenkinsfile (5cb6a192ab3b)
 
 ## v0.0.0 initial release
