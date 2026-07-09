@@ -1,82 +1,284 @@
-# Changelog
+# CHANGELOG
 
-Every noteable change is logged here.
 
-## v0.3.1 (2023-02-04)
+## v1.0.0 (2026-07-09)
 
-### Chore
+### Bug Fixes
 
-* upgrade requirements.txt (ee03e5578135)
+- **bib**: Make pattern more strict
+  ([`7f5a1eb`](https://github.com/anaticulae/capita_ref/commit/7f5a1eb5d73699e093024d68bafd3ba4fb652553))
 
-## v0.3.0 (2023-02-04)
+- **cli**: Adjust interface to new package naming
+  ([`f1d6ada`](https://github.com/anaticulae/capita_ref/commit/f1d6adab4a2d1507adafbd4c8cc5ec8b0e00b9ea))
 
-### Feature
+- **special**: Make pattern more strict
+  ([`43b73f4`](https://github.com/anaticulae/capita_ref/commit/43b73f48071a4d18658db44b2f50204bdbb7ff01))
 
-* make footer skipper optional (c4d7f69031b4)
-* use publications to skip bib area (a886b177d397)
-* run publication area detector first (4e8220156e04)
-* disable feature for too few pages (ecdc5c2efe95)
-* add publication step (5dc8713e6291)
-* use new bib ref pattern (0bc5c839e92a)
+### Chores
 
-### Chore
+- **github**: Add .github
+  ([`3be234e`](https://github.com/anaticulae/capita_ref/commit/3be234e53090c497dcca304ba3f4fe8fa25b74d6))
 
-* extend test data generator (a4a51aee6ee7)
-* add cov step (9469c527dae9)
-* replace with new steps (c8605454f0c1)
-* upgrade requirements.txt (d20b40710f0c)
-* upgrade requirements.txt (183b4a955374)
-* extend test data generator (4d161de70c6b)
-* upgrade requirements.txt (0b82ab2aa67d)
-* upgrade Jenkinsfile (ee8ed19d1b09)
+- **Jenkins**: Add baseline step
+  ([`fc48433`](https://github.com/anaticulae/capita_ref/commit/fc4843318067b22ca1da482f170a056da3930a5c))
 
-## v0.2.1 (2023-01-24)
+- **Jenkins**: Shorten step name
+  ([`529de56`](https://github.com/anaticulae/capita_ref/commit/529de56867aa150621accc9f9eb5790aeea3ec0b))
+
+- **Jenkins**: Upgrade Jenkinsfile
+  ([`1255578`](https://github.com/anaticulae/capita_ref/commit/12555786cea430f4403119cc43d034ba641b2b22))
+
+- **Jenkins**: Upgrade pipe library
+  ([`4494783`](https://github.com/anaticulae/capita_ref/commit/4494783880bb1e41d17865d74ba046070a8af51d))
+
+- **pyproject**: Add modern layout
+  ([`3f9bbce`](https://github.com/anaticulae/capita_ref/commit/3f9bbceeb6131dc5d77e8e42d56a4e9104e2a992))
+
+- **pyproject**: Release on every commit
+  ([`f1b8cab`](https://github.com/anaticulae/capita_ref/commit/f1b8cabb6728d9db40f1278d6b11612f7c729760))
+
+- **requirements**: Upgrade requirements.txt
+  ([`07db39a`](https://github.com/anaticulae/capita_ref/commit/07db39a7dc784e0d204249f67512c8f5b66f5b78))
+
+### Code Style
+
+- **test**: Add missing import
+  ([`593c842`](https://github.com/anaticulae/capita_ref/commit/593c842889eb684f645f81e652eebec2b5024699))
 
 ### Documentation
 
-* happy New Year! (a9538bcacf27)
+- **readme**: Adjust file names
+  ([`3cc173f`](https://github.com/anaticulae/capita_ref/commit/3cc173f7d12773faf44ef14c3e9800f2e0023e7d))
 
-### Chore
+### Refactoring
 
-* upgrade requirements.txt (4ced5c458847)
-* extend test data generator (0b972fdc9210)
-* upgrade requirements.txt (46936153bafd)
-* upgrade Jenkinsfile (721b2c2044c0)
-* upgrade pipe library (d9281766f5ee)
+- **names**: Adjust package names
+  ([`887463b`](https://github.com/anaticulae/capita_ref/commit/887463b4251b3e4a396f37cc46824ed0fb5963bb))
+
+### Testing
+
+- **baseline**: Adjust baseline
+  ([`b6c5d1c`](https://github.com/anaticulae/capita_ref/commit/b6c5d1cdbe2e6faf65d620cd9bb8571e1c58bec2))
+
+- **resources**: Disable missing resource
+  ([`bd35222`](https://github.com/anaticulae/capita_ref/commit/bd3522269041effd3365f265ca4895f8ca7e4d78))
+
+- **special**: Add regression test
+  ([`6aa8315`](https://github.com/anaticulae/capita_ref/commit/6aa831505cde886ef4c406b39863a9f4ec1d749e))
+
+- **validate**: Add bib regression test
+  ([`fb101d8`](https://github.com/anaticulae/capita_ref/commit/fb101d8352ec6e09c504887ed69dc8c29d0a0dfe))
+
+- **validate**: Skip failing tests
+  ([`a1069ea`](https://github.com/anaticulae/capita_ref/commit/a1069eaf5b06a4cee1145b6c35084d4533416bb4))
+
+
+## v0.3.1 (2023-02-04)
+
+### Chores
+
+- **requirements**: Upgrade requirements.txt
+  ([`ee03e55`](https://github.com/anaticulae/capita_ref/commit/ee03e557813597b5c8f4e79b9677bde3541bbf3e))
+
+### Code Style
+
+- **double**: Format code
+  ([`6489435`](https://github.com/anaticulae/capita_ref/commit/6489435acd4cf7a34b4193012c2121a89d9a9c39))
+
+### Testing
+
+- **bib**: Use publication step to improve bib extraction
+  ([`8623bfa`](https://github.com/anaticulae/capita_ref/commit/8623bfa318a75299bbaea02013c3c4c6d1017620))
+
+
+## v0.3.0 (2023-02-04)
+
+### Chores
+
+- **Jenkins**: Add cov step
+  ([`9469c52`](https://github.com/anaticulae/capita_ref/commit/9469c527dae9f33339204d22879affa28e28e43e))
+
+- **Jenkins**: Replace with new steps
+  ([`c860545`](https://github.com/anaticulae/capita_ref/commit/c8605454f0c196d28fc06d8a7a09720151ee5d00))
+
+- **Jenkins**: Upgrade Jenkinsfile
+  ([`ee8ed19`](https://github.com/anaticulae/capita_ref/commit/ee8ed19d1b098aacba85fbb8395ed90035d97f79))
+
+- **requirements**: Upgrade requirements.txt
+  ([`d20b407`](https://github.com/anaticulae/capita_ref/commit/d20b40710f0c7ef0fdf695d2ad5d3d3b2c695569))
+
+- **requirements**: Upgrade requirements.txt
+  ([`183b4a9`](https://github.com/anaticulae/capita_ref/commit/183b4a9553746188a737baed5faabc96fdf6145b))
+
+- **requirements**: Upgrade requirements.txt
+  ([`0b82ab2`](https://github.com/anaticulae/capita_ref/commit/0b82ab2aa67dfc7269f8a942b694e41cad62bec0))
+
+- **resources**: Extend test data generator
+  ([`a4a51ae`](https://github.com/anaticulae/capita_ref/commit/a4a51aee6ee76b6a7bcf0d8fe0962570b81a1c8b))
+
+- **resources**: Extend test data generator
+  ([`4d161de`](https://github.com/anaticulae/capita_ref/commit/4d161de70c6b2b5a0ef60519106666820e275346))
+
+### Features
+
+- **bib**: Make footer skipper optional
+  ([`c4d7f69`](https://github.com/anaticulae/capita_ref/commit/c4d7f69031b4462894198b7a38c503caeeebb551))
+
+- **bib**: Use new bib ref pattern
+  ([`0bc5c83`](https://github.com/anaticulae/capita_ref/commit/0bc5c839e92abe628a9a0eff66b7c7a0f25956c5))
+
+- **bib**: Use publications to skip bib area
+  ([`a886b17`](https://github.com/anaticulae/capita_ref/commit/a886b177d3973936f45d05fd90e781728fe97848))
+
+- **cli**: Run publication area detector first
+  ([`4e82201`](https://github.com/anaticulae/capita_ref/commit/4e8220156e04654fc4e7e4ed4406916b3c23444d))
+
+- **feature**: Add publication step
+  ([`5dc8713`](https://github.com/anaticulae/capita_ref/commit/5dc8713e6291d14af57701948b03296879584e09))
+
+- **publication**: Disable feature for too few pages
+  ([`ecdc5c2`](https://github.com/anaticulae/capita_ref/commit/ecdc5c2efe951f99449ff0b08c8f8f6f8963a913))
+
+### Refactoring
+
+- **test**: Improve code style
+  ([`12b527d`](https://github.com/anaticulae/capita_ref/commit/12b527d7b3ce94b2116982d9d00398924f5b1cb0))
+
+- **test**: Increase test re usability
+  ([`ba6fb70`](https://github.com/anaticulae/capita_ref/commit/ba6fb703a7c7e026a29f726a5b28cc4996bcc918))
+
+- **test**: Split validation tests
+  ([`8f6ccda`](https://github.com/anaticulae/capita_ref/commit/8f6ccda009afc4d517d39bfad2d533088ad72b23))
+
+### Testing
+
+- **bib**: Make debugging information more verbose
+  ([`f669e26`](https://github.com/anaticulae/capita_ref/commit/f669e26af8844a61f3e46abb275adfca24a74e77))
+
+- **cli**: Verify cli
+  ([`902cecd`](https://github.com/anaticulae/capita_ref/commit/902cecdcc44e0b564417ce4bd7dddbac78fa48ed))
+
+- **pub**: Validate publication detection
+  ([`c61e570`](https://github.com/anaticulae/capita_ref/commit/c61e57095af83b3a6e9da5e3ec62bd5eb7a18b95))
+
+- **refactor**: Remove flaky test
+  ([`ab30797`](https://github.com/anaticulae/capita_ref/commit/ab30797ea910142ef90c021cdc090a8b752a2a38))
+
+- **remove**: Remove duplicated test
+  ([`58fb185`](https://github.com/anaticulae/capita_ref/commit/58fb185d42d4ccce5c722cfa1ee4dfc1f4afad16))
+
+- **validate**: Add diss173 publication
+  ([`fcf8904`](https://github.com/anaticulae/capita_ref/commit/fcf890400fa23a7628682afc84a0c95c1a8931bb))
+
+- **validate**: Extend publication validation
+  ([`ca78bf3`](https://github.com/anaticulae/capita_ref/commit/ca78bf3615c32d6e5abe929d45fd02ebe331333c))
+
+
+## v0.2.1 (2023-01-24)
+
+### Chores
+
+- **Jenkins**: Upgrade Jenkinsfile
+  ([`721b2c2`](https://github.com/anaticulae/capita_ref/commit/721b2c2044c0da1d561b2e83281eb7a6d6dfb762))
+
+- **Jenkins**: Upgrade pipe library
+  ([`d928176`](https://github.com/anaticulae/capita_ref/commit/d9281766f5ee9b3bdda5f1c67def61b1c6a8bdc6))
+
+- **requirements**: Upgrade requirements.txt
+  ([`4ced5c4`](https://github.com/anaticulae/capita_ref/commit/4ced5c4588472e3b5a65eedbbb792e19e747d8e5))
+
+- **requirements**: Upgrade requirements.txt
+  ([`4693615`](https://github.com/anaticulae/capita_ref/commit/46936153bafd277dc8a8e966978cc8ff2699143c))
+
+- **resources**: Extend test data generator
+  ([`0b972fd`](https://github.com/anaticulae/capita_ref/commit/0b972fdc921081b2c20c01a613a406ad4ef24501))
+
+### Documentation
+
+- **copyright**: Happy New Year!
+  ([`a9538bc`](https://github.com/anaticulae/capita_ref/commit/a9538bcacf2749ce1f402c3bab8a0c84b9004bcf))
+
+### Testing
+
+- **bib**: Verify bib sections from power data
+  ([`4eb0746`](https://github.com/anaticulae/capita_ref/commit/4eb0746d32dadf030aad1379aec71439d51155b8))
+
+- **refactor**: Clarify code
+  ([`c469f80`](https://github.com/anaticulae/capita_ref/commit/c469f8058c5a0132444ff040056118d32451b988))
+
+- **style**: Shorten test names
+  ([`a6b4eb4`](https://github.com/anaticulae/capita_ref/commit/a6b4eb45f35b5bfe1db616b2b02bf8a252ebd9d5))
+
 
 ## v0.2.0 (2023-01-12)
 
-### Feature
+### Bug Fixes
 
-* reduce required marker (a0c5916e6dfc)
-* use oneline and normal resources to improve algo (a474fa63b409)
-* try to reduce runtime (089862a09039)
-* make result immutable (1ed4aeee584c)
-* shorten possible author name (a87e41b50afa)
-* make author names more robust (d3cc974f858a)
+- **double**: Make author name more strict
+  ([`5d1f05a`](https://github.com/anaticulae/capita_ref/commit/5d1f05a5acb04ee71fbee044fdbfec58f2c62d2d))
 
-### Fix
+- **imports**: Add missing import
+  ([`d1b97c6`](https://github.com/anaticulae/capita_ref/commit/d1b97c68c5168b5b6c06426bda322abbdfa32cc0))
 
-* add missing import (d1b97c68c516)
-* make author name more strict (5d1f05a5acb0)
-* make parse more strict (17c71585c74e)
+- **special**: Make parse more strict
+  ([`17c7158`](https://github.com/anaticulae/capita_ref/commit/17c71585c74ea359da462f61ed4a0aa7098ec037))
 
-### Chore
+### Chores
 
-* extend test data generator (f27b9f1174b8)
-* add missing package (90262e786692)
+- **fix**: Add missing package
+  ([`90262e7`](https://github.com/anaticulae/capita_ref/commit/90262e786692fd3007672751dcdb96dd0b47cf66))
+
+- **resources**: Extend test data generator
+  ([`f27b9f1`](https://github.com/anaticulae/capita_ref/commit/f27b9f1174b85892a3a8bb9622ca0aefab5122ce))
+
+### Features
+
+- **bib**: Use oneline and normal resources to improve algo
+  ([`a474fa6`](https://github.com/anaticulae/capita_ref/commit/a474fa63b4097372815f5472c77dee27b2e27064))
+
+- **double**: Make result immutable
+  ([`1ed4aee`](https://github.com/anaticulae/capita_ref/commit/1ed4aeee584cf774aa4d4212c009982bd4852bc3))
+
+- **double**: Try to reduce runtime
+  ([`089862a`](https://github.com/anaticulae/capita_ref/commit/089862a09039475661f33179699a53e45f50d830))
+
+- **special**: Make author names more robust
+  ([`d3cc974`](https://github.com/anaticulae/capita_ref/commit/d3cc974f858a8c08c81ac4dfff98820188edc256))
+
+- **special**: Reduce required marker
+  ([`a0c5916`](https://github.com/anaticulae/capita_ref/commit/a0c5916e6dfcf4435f1edc351851b24fb17dce4a))
+
+- **special**: Shorten possible author name
+  ([`a87e41b`](https://github.com/anaticulae/capita_ref/commit/a87e41b50afa2b3751b15c02aaf38458e0be7c22))
+
+### Refactoring
+
+- **double**: Convert to real holy values
+  ([`4c9b378`](https://github.com/anaticulae/capita_ref/commit/4c9b37831c46dbc19b6c1ec34b0013ecf3d53e1c))
+
 
 ## v0.1.0 (2023-01-11)
 
-### Feature
+### Chores
 
-* move cli from section (567abeab686f)
+- **Jenkins**: Add Jenkinsfile
+  ([`5cb6a19`](https://github.com/anaticulae/capita_ref/commit/5cb6a192ab3b08bc19856e7c73ca68e8cbe7fea4))
 
-### Chore
+- **requirements**: Add iamraw
+  ([`5a72713`](https://github.com/anaticulae/capita_ref/commit/5a727131c821a3ac32ca79adff89cb277accb37b))
 
-* add missing requirements (b4ac864ecaef)
-* add iamraw (5a727131c821)
-* add utilo (f2964e8109fa)
-* add Jenkinsfile (5cb6a192ab3b)
+- **requirements**: Add missing requirements
+  ([`b4ac864`](https://github.com/anaticulae/capita_ref/commit/b4ac864ecaef6e834be4cced20dc107efe03d09f))
 
-## v0.0.0 initial release
+- **requirements**: Add utila
+  ([`f2964e8`](https://github.com/anaticulae/capita_ref/commit/f2964e8109fa98b1a9351f77e2153bdf5d9c9f5c))
+
+### Features
+
+- **cli**: Move cli from section
+  ([`567abea`](https://github.com/anaticulae/capita_ref/commit/567abeab686f729863af27598ee0a4bd85c8556c))
+
+
+## v0.0.0 (2023-01-11)
+
+- Initial Release
