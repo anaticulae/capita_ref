@@ -15,6 +15,7 @@ import utilotest
 
 import capita_ref
 import tests
+import tests.conftest
 
 ARCHIVE = utilo.join(capita_ref.ROOT, 'tests/bib/expected', exist=True)
 
