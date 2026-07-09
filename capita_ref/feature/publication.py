@@ -22,11 +22,11 @@ EMPTY = serializeraw.dump_likelihood([])
 def work(
     oneline_text: str,
     oneline_textpositions: str,
-    pdfinfo: str,
+    pdflog: str,
     pages=None,
 ) -> str:
-    if utilo.exists(pdfinfo):
-        loaded = serializeraw.load_pdfinfo(pdfinfo)
+    if utilo.exists(pdflog):
+        loaded = serializeraw.load_pdfinfo(pdflog)
         if loaded.pages < FEATURE_PAGE_COUNT_MIN:
             utilo.log(f'skip publication, too few pages: {loaded.pages}')
             return EMPTY

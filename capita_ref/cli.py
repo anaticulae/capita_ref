@@ -20,7 +20,7 @@ WORKPLAN = [
         inputs=[
             utilo.ResultFile('rawmaker', 'oneline_text_text'),
             utilo.ResultFile('rawmaker', 'oneline_text_positions'),
-            utilo.File(name='pdfinfo', optional=True),
+            utilo.File(name='pdflog', optional=True),
         ],
         output=('like',),
     ),
