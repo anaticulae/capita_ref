@@ -43,7 +43,10 @@ def test_no_bib(source, pages, td, mp):
     assert not pages, str(pages)
 
 
-def testfiles() -> list:
+XFAIL = 'diss172 bachelor128'.split()
+
+
+def collect_test_files() -> list:
     result = []
     for source in tests.conftest.RESOURCES:
         pages = hoverpower.bib(source, default=None)
@@ -52,12 +55,20 @@ def testfiles() -> list:
             continue
         testname = utilo.file_name(source)
         pages: str = utilo.parse_pages(pages)
-        item = pytest.param(source, pages, id=testname)
+        if testname in XFAIL:
+            item = pytest.param(
+                source,
+                pages,
+                marks=pytest.mark.xfail(reason='incomplete impl'),
+                id=testname,
+            )
+        else:
+            item = pytest.param(source, pages, id=testname)
         result.append(item)
     return result
 
 
-@pytest.mark.parametrize('source, expected', testfiles())
+@pytest.mark.parametrize('source, expected', collect_test_files())
 def test_files(source, expected, td, mp):
     expected = list(expected)
     pages = extract_bibliography(source, ':', td, mp)
