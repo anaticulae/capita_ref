@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v1.0.1 (2026-07-10)
+
+### Chores
+
+- **test**: Add missing secret
+  ([`ed91d91`](https://github.com/anaticulae/capita_ref/commit/ed91d91b2c8a2f4f898eec5060d19c85c5fe4266))
+
+
 ## v1.0.0 (2026-07-09)
 
 ### Bug Fixes
