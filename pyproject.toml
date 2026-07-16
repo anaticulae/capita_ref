@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "setuptools>=82.0.1",
+    "setuptools>=83.0.0",
     "wheel>=0.47.0",
 ]
 build-backend = "setuptools.build_meta"
@@ -21,7 +21,7 @@ dependencies = [
     "geostrat>=1.5.1,<2.0.0",
     "germania>=1.32.0,<2.0.0",
     "layouta>=1.0.0,<2.0.0",
-    "capita>=1.25.2,<2.0.0",
+    "capita>=1.25.3,<2.0.0",
 ]
 keywords = []
 classifiers = [
